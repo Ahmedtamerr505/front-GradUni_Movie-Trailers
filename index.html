@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CineWave – Movie & Show Trailers</title>
+  <meta name="description" content="Discover trending and latest official trailers powered by the KinoCheck API." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/loader.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body class="is-loading">
+
+  <!-- ===== Animated loader ===== -->
+  <div id="loader" aria-label="Loading">
+    <div class="loader-bg"></div>
+    <div class="loader-inner">
+      <div class="reel">
+        <span class="hole h1"></span><span class="hole h2"></span><span class="hole h3"></span>
+        <span class="hole h4"></span><span class="hole h5"></span><span class="hole h6"></span>
+        <span class="hub"></span>
+      </div>
+      <h1 class="loader-logo"><span>C</span><span>I</span><span>N</span><span>E</span><span>W</span><span>A</span><span>V</span><span>E</span></h1>
+      <div class="loader-bar"><div class="loader-bar-fill" id="loaderFill"></div></div>
+      <p class="loader-text" id="loaderText">Rolling the film…</p>
+    </div>
+  </div>
+
+  <div class="cursor-glow" id="cursorGlow"></div>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- ===== Header ===== -->
+  <header class="header" id="header">
+    <a href="#top" class="logo">CINE<span>WAVE</span></a>
+    <nav class="nav">
+      <a href="#hero">Home</a>
+      <a href="#browse">Browse</a>
+      <a href="#search">Search</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" title="Switch to light mode" aria-pressed="false">
+      <span aria-hidden="true">☀️</span>
+    </button>
+  </header>
+
+  <main id="top">
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="hero">
+      <div class="hero-bg" id="heroBg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content" id="heroContent">
+        <div class="skeleton sk-line w40"></div>
+        <div class="skeleton sk-line w70 tall"></div>
+        <div class="skeleton sk-line w30"></div>
+      </div>
+      <div class="scroll-hint"><span></span></div>
+    </section>
+
+    <!-- ===== Browse ===== -->
+    <section class="section" id="browse">
+      <div class="section-head reveal">
+        <h2>Discover <em>Trailers</em></h2>
+        <div class="tabs" id="tabs">
+          <button class="tab active" data-mode="trending">🔥 Trending</button>
+          <button class="tab" data-mode="latest">🆕 Latest</button>
+          <span class="tab-indicator"></span>
+        </div>
+      </div>
+
+      <div class="chips reveal" id="chips"></div>
+
+      <div class="grid" id="grid"></div>
+
+      <div class="empty" id="empty" hidden>
+        <div class="empty-icon">🎞️</div>
+        <p>No videos found. Try another genre.</p>
+      </div>
+
+      <div class="center">
+        <button class="btn btn-ghost" id="loadMore" hidden>Load more</button>
+      </div>
+    </section>
+
+    <!-- ===== Search by title ===== -->
+    <section class="section search-section" id="search">
+      <div class="section-head reveal">
+        <h2>Find by <em>Title</em></h2>
+      </div>
+      <p class="muted reveal">Search movies or shows by title, then load the available KinoCheck trailers.</p>
+      <form class="search-form reveal" id="searchForm">
+        <select id="searchType" aria-label="Type">
+          <option value="movies">Movie</option>
+          <option value="shows">Show</option>
+        </select>
+        <input id="searchInput" type="search" placeholder="Enter a movie or show title…" autocomplete="off" required />
+        <button class="btn btn-primary" type="submit">Search</button>
+      </form>
+      <div id="searchResult"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Video data provided by <a href="https://api.kinocheck.de" target="_blank" rel="noopener">KinoCheck API</a>. All trademarks belong to their owners.</p>
+  </footer>
+
+  <!-- ===== Modal ===== -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true">
+      <button class="modal-close" data-close aria-label="Close">✕</button>
+      <div class="player" id="player"></div>
+      <div class="modal-info">
+        <h3 id="modalTitle"></h3>
+        <div class="meta" id="modalMeta"></div>
+        <div class="modal-actions" id="modalActions"></div>
+      </div>
+      <div class="related" id="related" hidden>
+        <h4>More videos for this title</h4>
+        <div class="related-list" id="relatedList"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

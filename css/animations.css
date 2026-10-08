@@ -1,0 +1,155 @@
+/* ===== Keyframes ===== */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes bgShift {
+  from {
+    transform: scale(1) rotate(0deg);
+  }
+  to {
+    transform: scale(1.25) rotate(8deg);
+  }
+}
+@keyframes letterIn {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes kenburns {
+  from {
+    transform: scale(1.08) translate(0, 0);
+  }
+  to {
+    transform: scale(1.22) translate(-2%, -2%);
+  }
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 61, 113, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 12px rgba(255, 61, 113, 0);
+  }
+}
+@keyframes scrollDot {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* ===== Scroll reveal ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition:
+    opacity 0.9s var(--ease),
+    transform 0.9s var(--ease);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ===== Staggered card entrance (delay set inline via --i) ===== */
+.card,
+.sk-card {
+  animation: cardIn 0.7s var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+
+/* ===== Hero content entrance ===== */
+.hero-content.ready > * {
+  opacity: 0;
+  animation: fadeUp 0.9s var(--ease) forwards;
+}
+.hero-content.ready > *:nth-child(1) {
+  animation-delay: 0.15s;
+}
+.hero-content.ready > *:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.hero-content.ready > *:nth-child(3) {
+  animation-delay: 0.45s;
+}
+.hero-content.ready > *:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+.empty-icon {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
