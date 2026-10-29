@@ -4,6 +4,7 @@
 
 CineWave is a fast, dependency-free web app built with plain HTML, CSS and JavaScript. It features an animated film-reel loader, a cinematic hero banner, genre filters, an in-page trailer player and search by TMDB / IMDb / KinoCheck ID.
 
+
 ## ✨ Features
 
 - 🎞️ **Animated film-reel loader** with progress bar and smooth exit
